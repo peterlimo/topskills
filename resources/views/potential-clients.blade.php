@@ -3,25 +3,30 @@
 <head>
     <script src="{{ asset('') }}"></script>
     <link type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    <style>
+        #potentialdatatable {}
+
+        #potentialdatatable td,
+        #potentialdatatable th {
+            border-bottom: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #potentialdatatable tr:last-child {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .dataTables_filter input[type=search] {
+            border: none;
+            border-bottom: 1px solid #ddd;
+            outline: none;
+        }
+    </style>
 </head>
 @section('content')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
     <div class="d-block mb-4 mb-md-0">
-        <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
-            <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
-                <li class="breadcrumb-item">
-                    <a href="#">
-                        <svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
-                            </path>
-                        </svg>
-                        Home
-                    </a>
-                </li>
-                <li class="breadcrumb-item"><a href="#">Potential</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Clients</li>
-            </ol>
-        </nav>
         <h2 class="h4">All clients</h2>
     </div>
     <div class="btn-toolbar mb-2 mb-md-0">
@@ -41,9 +46,7 @@
 @if (session('success'))
 <div class="alert alert-success">{{ session('success') }}</div>
 @endif
-<div class="table-settings mb-4">
 
-</div>
 <div class="card card-body border-0 shadow table-wrapper table-responsive">
     <table class="table table-hover" id="potentialdatatable">
         <thead>
@@ -55,7 +58,6 @@
                 <th class="border-gray-200">Action</th>
             </tr>
         </thead>
-
 
         <tbody>
             @foreach ($clients as $client)
@@ -84,73 +86,73 @@
                 </td>
             </tr>
             <!-- Edit Client Modal -->
-<div class="modal fade" id="editClient{{$client->id}}" tabindex="-1" role="dialog" aria-labelledby="editClientScrollableTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="newClientScrollableTitle">Edit client</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form method="post" action="/edit-client/{{$client->id}}" autocomplete="off" class="form-horizontal">
-            
-                @csrf
-                @method('put')
-                    <div class="card ">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-sm-12 px-0 mx-0 my-0 py-0">
-                                    <label class="col-sm-12 col-form-label py-0 my-0"><small>Name</small></label>
-                                    <div class="col-sm-12">
-                                        <div class="form-group{{ $errors->has('') ? ' has-danger' : '' }}">
-                                            <input class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" id="input-username" type="text" required="true" aria-required="true" value="{{ old('username') ?? $client->username  }}">
-                                            @if ($errors->has('username'))
-                                            <span id="username-error" class="error text-danger" for="input-username">{{ $errors->first('username') }}</span>
-                                            @endif
-                                        </div>
+            <div class="modal fade" id="editClient{{$client->id}}" tabindex="-1" role="dialog" aria-labelledby="editClientScrollableTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="newClientScrollableTitle">Edit client</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="/edit-client/{{$client->id}}" autocomplete="off" class="form-horizontal">
 
+                                @csrf
+                                @method('put')
+                                <div class="card ">
+                                    <div class="card-body ">
+                                        <div class="row">
+                                            <div class="col-sm-12 px-0 mx-0 my-0 py-0">
+                                                <label class="col-sm-12 col-form-label py-0 my-0"><small>Name</small></label>
+                                                <div class="col-sm-12">
+                                                    <div class="form-group{{ $errors->has('') ? ' has-danger' : '' }}">
+                                                        <input class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" id="input-username" type="text" required="true" aria-required="true" value="{{ old('username') ?? $client->username  }}">
+                                                        @if ($errors->has('username'))
+                                                        <span id="username-error" class="error text-danger" for="input-username">{{ $errors->first('username') }}</span>
+                                                        @endif
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 px-0 mx-0 my-0 py-0">
+                                                <label class="col-sm-12 col-form-label py-0 my-0"><small>Email</small></label>
+                                                <div class="col-sm-12">
+                                                    <div class="form-group{{ $errors->has('') ? ' has-danger' : '' }}">
+                                                        <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" required="true" aria-required="true" value="{{ old('email') ?? $client->email }}">
+                                                        @if ($errors->has('email'))
+                                                        <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
+                                                        @endif
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 px-0 mx-0 my-0 py-0">
+                                                <label class="col-sm-12 col-form-label py-0 my-0"><small>Description</small></label>
+                                                <div class="col-sm-12">
+                                                    <div class="form-group{{ $errors->has('') ? ' has-danger' : '' }}">
+                                                        <textarea class="form-control{{ $errors->has('remarks') ? ' is-invalid' : '' }}" name="remarks" id="input-remarks" type="text" required="true" aria-required="true">{{ old('remarks')??$client->remarks }}</textarea>
+                                                        @if ($errors->has('remarks'))
+                                                        <span id="remarks-error" class="error text-danger" for="input-remarks">{{ $errors->first('remarks') }}</span>
+                                                        @endif
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="modal-footer col-md-12 my-0 mx-0 py-0">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary ml-1">{{ __('save details') }}</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-12 px-0 mx-0 my-0 py-0">
-                                    <label class="col-sm-12 col-form-label py-0 my-0"><small>Email</small></label>
-                                    <div class="col-sm-12">
-                                        <div class="form-group{{ $errors->has('') ? ' has-danger' : '' }}">
-                                            <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" required="true" aria-required="true" value="{{ old('email') ?? $client->email }}">
-                                            @if ($errors->has('email'))
-                                            <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
-                                            @endif
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 px-0 mx-0 my-0 py-0">
-                                    <label class="col-sm-12 col-form-label py-0 my-0"><small>Description</small></label>
-                                    <div class="col-sm-12">
-                                        <div class="form-group{{ $errors->has('') ? ' has-danger' : '' }}">
-                                            <textarea class="form-control{{ $errors->has('remarks') ? ' is-invalid' : '' }}" name="remarks" id="input-remarks" type="text" required="true" aria-required="true">{{ old('remarks')??$client->remarks }}</textarea>
-                                            @if ($errors->has('remarks'))
-                                            <span id="remarks-error" class="error text-danger" for="input-remarks">{{ $errors->first('remarks') }}</span>
-                                            @endif
-                                        </div>
-
-                                    </div>
-                                </div>
-
-
-                                <div class="modal-footer col-md-12 my-0 mx-0 py-0">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary ml-1">{{ __('save details') }}</button>
-                                </div>
-                            </div>
-                      </div>
+                            </form>
+                        </div>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
             @endforeach
         </tbody>
 
@@ -178,7 +180,7 @@
                                     <label class="col-sm-12 col-form-label py-0 my-0"><small>Name</small></label>
                                     <div class="col-sm-12">
                                         <div class="form-group{{ $errors->has('') ? ' has-danger' : '' }}">
-                                            <input class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}"  name="username" id="input-username" type="text" required="true" aria-required="true" value="{{ old('username') ?? $client->username}}">
+                                            <input class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" id="input-username" type="text" required="true" aria-required="true" value="{{ old('username') ?? $client->username}}">
                                             @if ($errors->has('username'))
                                             <span id="username-error" class="error text-danger" for="input-username">{{ $errors->first('username') }}</span>
                                             @endif
@@ -231,6 +233,11 @@
 
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script>
-    $('#potentialdatatable').DataTable();
+    $('#potentialdatatable').DataTable({
+        "aoColumnDefs": [{
+            "bSortable": false,
+            "aTargets": [1, 2, 3, 4]
+        }]
+    });
 </script>
 @endsection

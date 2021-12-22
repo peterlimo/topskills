@@ -122,7 +122,7 @@
             @include('layouts.topbar')
             @yield('content')
             {{-- Footer --}}
-            @include('layouts.footer')
+        
         </main>
 
         {{-- Footer --}}

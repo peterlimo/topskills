@@ -43,6 +43,9 @@
     <!-- Volt CSS -->
     <link type="text/css" href="/css/volt.css" rel="stylesheet">
 
+
+    <!-- Data table Css -->
+
     @livewireStyles
 
     @livewireScripts

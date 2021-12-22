@@ -74,3 +74,9 @@ Route::middleware('auth')->group(function () {
 Route::get('/potential-clients', [App\Http\Controllers\HomeController::class, 'potentialClients'])->name('potential.clients');
 Route::post('/add-client', [App\Http\Controllers\HomeController::class, 'addClient'])->name('add.client');
 Route::get('/send-emails', [App\Http\Controllers\HomeController::class, 'sendEmails'])->name('send.emails');
+
+
+Route::get('/sendmassemails', [App\Http\Controllers\HomeController::class, 'sendMassEmails'])->name('send.mass.emails');
+
+Route::put('/edit-client/{id}', [App\Http\Controllers\HomeController::class, 'editClient'])->name('edit.client');
+

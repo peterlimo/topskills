@@ -42,6 +42,9 @@
     <!-- Volt CSS -->
     <link type="text/css" href="/css/volt.css" rel="stylesheet">
 
+
+    <!-- Data table Css -->
+
     @livewireStyles
 
     @livewireScripts
@@ -87,6 +90,8 @@
     <!-- Volt JS -->
     <script src="/assets/js/volt.js"></script>
 
+    <!-- Data table js -->
+    
     @if(env('IS_DEMO')) 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141734189-6"></script>

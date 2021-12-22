@@ -11,6 +11,7 @@ class HomeController extends Controller
     public function potentialClients()
     {
         $clients = PotentialClients::all();
+
         return view('potential-clients', compact('clients'));
     }
 
@@ -32,18 +33,40 @@ class HomeController extends Controller
 
         return back()->with('success', 'Client added successfully');
     }
+    public function editClient($id)
+    {
+        $client = PotentialClients::Where('id', $id)->firstOrFail();
+        $data = request()->validate([
+            'username' => 'required',
+            'email' => 'required',
+            'remarks' => 'required',
+        ]);
 
+       $client->update([
+            'username' => $data['username'],
+            'remarks' => $data['remarks'],
+            'email' => $data['email'],            
+            'assigned_to' => 'admin',
+            'status'=> 'new'
+        ]);
 
-    public function sendEmails() {
-   
+        return back()->with('success', 'Record updated successfully');
+    }
+    public function sendMassEmails()
+    {
+     
         $data = array('name'=>"Top skills Lab");
         Mail::send('email', $data, function($message) {
-            $message->to('josephmwangi.jgm@gmail.com', 'Joseph mwangi')->subject
+            $clients = PotentialClients::all();
+            foreach($clients as $client){
+            $message->to($client->email, $client->username)->subject
                 ('This is a test email');
             $message->from('info@topskillsltd.com','Top skills Lab');
+            }
         });
-        $clients = PotentialClients::all();
-        return redirect()->route('potential.clients', ['clients' => $clients])->with("success", 'Emails sent to your clients');
+ 
+    
+        return back()->with("success", 'Emails sent to your clients');
 
     }
 }

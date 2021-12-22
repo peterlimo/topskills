@@ -69,3 +69,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/modals', Modals::class)->name('modals');
     Route::get('/typography', Typography::class)->name('typography');
 });
+
+
+Route::get('/potential-clients', [App\Http\Controllers\HomeController::class, 'potentialClients'])->name('potential.clients');
+Route::post('/add-client', [App\Http\Controllers\HomeController::class, 'addClient'])->name('add.client');
+Route::get('/send-emails', [App\Http\Controllers\HomeController::class, 'sendEmails'])->name('send.emails');

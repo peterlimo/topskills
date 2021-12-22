@@ -36,7 +36,7 @@
             <img src="/assets/img/brand/light.svg" height="20" width="20" alt="Volt Logo">
           </span>
           <span class="mt-1 ms-1 sidebar-text">
-            Volt Laravel
+            TOP SKILLS
           </span>
         </a>
       </li>
@@ -54,8 +54,8 @@
         <span class="nav-link collapsed d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
           data-bs-target="#submenu-laravel" aria-expanded="true">
           <span>
-            <span class="sidebar-icon"><i class="fab fa-laravel me-2" style="color: #fb503b;"></i></span>
-            <span class="sidebar-text" style="color: #fb503b;">Laravel Examples</span>
+            <span class="sidebar-icon"><i class="fas fa-user me-2" style="color: #fb503b;"></i></span>
+            <span class="sidebar-text" style="color: #fb503b;">Profiles</span>
           </span>
           <span class="link-arrow"><svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg">
@@ -72,14 +72,14 @@
               </a>
             </li>
             <li class="nav-item {{ Request::segment(1) == 'users' ? 'active' : '' }}">
-              <a href="/users" class="nav-link">
-                <span class="sidebar-text">User management</span>
+              <a href="/potential-clients" class="nav-link">
+                <span class="sidebar-text">Potential clients</span>
               </a>
             </li>
           </ul>
         </div>
       </li>
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a href="https://themesberg.com/product/laravel/volt-pro-admin-dashboard-template" target="_blank" class="nav-link d-flex justify-content-between">
           <span>
             <span class="sidebar-icon"><svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
@@ -331,7 +331,7 @@
           </span>
           <span>Upgrade to Pro</span>
         </a>
-      </li>
+      </li> --}}
     </ul>
   </div>
 </nav>

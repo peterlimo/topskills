@@ -107,7 +107,11 @@
         })(window, document, 'script', 'dataLayer', 'GTM-THQTXJ7');</script>
         <!-- End Google Tag Manager -->
     @endif
-
+    <style>
+        *{
+            font-size: 13px;
+        }
+    </style>
 
 </head>
 

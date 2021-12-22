@@ -118,7 +118,7 @@
                                 <div class="dropdown-menu py-0">
                                     <a class="dropdown-item rounded-top" href="#"><span class="fas fa-eye me-2"></span>View
                                         Details</a>
-                                    <a class="dropdown-item" href="#"><span class="fas fa-edit me-2"></span>Edit</a>
+                                    <a class="dropdown-item" type="btn" data-bs-toggle="modal" data-bs-target="#editClient"><span class="fas fa-edit me-2"></span>Edit</a>
                                     <a class="dropdown-item text-danger rounded-bottom" href="#"><span
                                             class="fas fa-trash-alt me-2"></span>Remove</a>
                                 </div>
@@ -155,6 +155,19 @@
                 </ul>
             </nav>
             <div class="fw-normal small mt-4 mt-lg-0">Showing <b>5</b> out of <b>25</b> entries</div>
+        </div>
+    </div>
+    <div class="modal fade" id="editClient" tabindex="-1" role="dialog"
+        aria-labelledby="editClientScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editClientScrollableTitle">edit client</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Modal -->
